@@ -132,16 +132,14 @@
       </div>
     </section>
 
-    <!-- ── VENDORS ────────────────────────────────────── -->
-    <section class="vendors-section">
+<section class="vendors-section">
       <div class="vendors-inner">
         <div class="vendors-header">
-          <div class="section-tag">Boutiques</div>
+          <div class="section-tag">Marques</div>
           <h2>Vendeurs populaires</h2>
           <p class="vendors-sub">Découvrez les boutiques les plus appréciées de notre plateforme.</p>
         </div>
 
-        <!-- Loading -->
         <div v-if="loadingVendors" class="vendors-loading">
           <div v-for="i in 4" :key="i" class="vendor-skel" />
         </div>
@@ -159,38 +157,47 @@
                   v-if="vendor.logo"
                   :src="vendor.logo"
                   :alt="vendor.shop_name"
-                  @error="(e) => e.target.style.display = 'none'"
+                  @error="(e) => e.target.src = '/default-shop.png'" 
                 />
                 <span v-else class="vendor-initial">{{ vendor.shop_name?.[0] || '🏪' }}</span>
               </div>
               <div class="vendor-info">
                 <div class="vendor-name">{{ vendor.shop_name }}</div>
-                <div class="vendor-loc">📍 {{ vendor.city || 'Bénin' }}</div>
+                <div class="vendor-loc">📍 {{ vendor.about|| 'Bénin' }}</div>
               </div>
-              <div class="vendor-verified">✓</div>
+              <div v-if="vendor.is_brand" class="vendor-verified" title="Marque vérifiée">✓</div>
             </div>
+
             <div class="vendor-products">
               <div class="vendor-products-grid">
                 <div
-                  v-for="(p, pi) in (vendor.preview_products || []).slice(0, 3)"
+                  v-for="(imgUrl, pi) in (vendor.preview_products || [])"
                   :key="pi"
                   class="vendor-product-thumb"
                   :style="{ background: gradients[pi % gradients.length] }"
                 >
-                  <img v-if="p.main_image?.image" :src="p.main_image.image" :alt="p.name" />
-                  <span v-else>{{ p.emoji || '📦' }}</span>
+                  <img :src="imgUrl" :alt="vendor.shop_name + ' product'" />
+                </div>
+                
+                <div 
+                  v-for="emptyIdx in Math.max(0, 3 - (vendor.preview_products?.length || 0))" 
+                  :key="'empty-' + emptyIdx"
+                  class="vendor-product-thumb empty"
+                >
+                  <span>📦</span>
                 </div>
               </div>
             </div>
+
             <div class="vendor-footer">
               <div class="vendor-stats-row">
                 <div class="vendor-stat">
-                  <strong>{{ vendor.product_count || '—' }}</strong>
+                  <strong>{{ vendor.product_count }}</strong>
                   <span>produits</span>
                 </div>
                 <div class="vendor-stat">
-                  <strong>{{ vendor.rating || '4.8' }}★</strong>
-                  <span>note</span>
+                  <strong>{{ vendor.rating }}★</strong>
+                  <span>({{ vendor.rating_count }})</span>
                 </div>
               </div>
               <button class="btn-shop">Voir la boutique</button>
@@ -227,6 +234,7 @@ const { download } = useDownload()
 
 // ── Config ─────────────────────────────────────────────
 const API_BASE = 'http://127.0.0.1:8000/api'
+
 
 const gradients = [
   'linear-gradient(135deg,#ffecd2,#ffcba0)',
@@ -326,6 +334,7 @@ async function fetchProducts(reset = true) {
   try {
     const params = new URLSearchParams()
     if (selectedCat.value) params.set('category', selectedCat.value)
+    params.set('africa_brand', 'true') 
     params.set('page', page.value)
 
     const data = await $fetch(`${API_BASE}/product/suggestions/?${params}`)
@@ -356,34 +365,31 @@ async function fetchProducts(reset = true) {
 async function fetchVendors() {
   loadingVendors.value = true
   try {
-    // Utilise l'endpoint products avec seller pour reconstruire les vendeurs
-    const data = await $fetch(`${API_BASE}/product/suggestions/?page_size=20`)
-    const list  = Array.isArray(data) ? data : (data.results || [])
+    // 1. Appel de ton nouvel endpoint paginé
+    const data = await $fetch(`${API_BASE}/vendors/?page=1`)
+    
+    // 2. Extraction de la liste depuis 'results' (puisque c'est paginé)
+    const list = data.results || []
 
-    // Déduplique par seller_id
-    const seen = new Set()
-    const vendorMap = {}
-    list.forEach(p => {
-      const sid = p.shop_id || p.seller_id
-      if (!seen.has(sid)) {
-        seen.add(sid)
-        vendorMap[sid] = {
-          id: sid,
-          shop_name: `Boutique ${sid}`,
-          city: 'Bénin',
-          rating: '4.8',
-          product_count: 0,
-          preview_products: [],
-          logo: null,
-        }
-      }
-      if (vendorMap[sid].preview_products.length < 3) {
-        vendorMap[sid].preview_products.push(p)
-      }
-      vendorMap[sid].product_count++
-    })
-    vendors.value = Object.values(vendorMap).slice(0, 8)
-  } catch {
+    // 3. Mapping direct : plus besoin de dédoupliquer ou de filtrer ici,
+    // car le backend s'en occupe déjà avec is_brand=True.
+    vendors.value = list.map(v => ({
+      id: v.id,
+      shop_name: v.shop_name || 'Boutique sans nom',
+      about: v.about,
+      logo: v.logo, // Ton backend renvoie déjà l'URL absolue
+      rating: v.total_ratings.average,
+      rating_count: v.total_ratings.count,
+      product_count: v.products_count,
+      preview_products: v.products_preview, // C'est déjà une liste d'URLs
+      is_brand: v.is_brand
+    }))
+
+    // Optionnel : Si tu veux limiter l'affichage sur la Home à 8 marques
+    vendors.value = vendors.value.slice(0, 8)
+
+  } catch (error) {
+    console.error("Erreur lors de la récupération des marques:", error)
     vendors.value = []
   } finally {
     loadingVendors.value = false
