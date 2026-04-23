@@ -59,10 +59,10 @@
               <Smartphone :size="15" />
               Google Play
             </a>
-            <a href="#" class="store-pill">
+            <!--<a href="#" class="store-pill">
               <Smartphone :size="15" />
               App Store
-            </a>
+            </a>-->
           </div>
         </div>
 
@@ -189,7 +189,7 @@
               <div class="neh-feat-icon"><Lock :size="20" /></div>
               <div>
                 <div class="neh-feat-title">Paiement sécurisé</div>
-                <div class="neh-feat-desc">Mobile Money, Orange Money, Wave.</div>
+                <div class="neh-feat-desc">Mobile Money.</div>
               </div>
             </div>
           </div>
@@ -201,7 +201,7 @@
         <div class="nehanda-visual">
           <div class="neh-card-main">
             <div class="neh-avatar-big">
-              <img src="/images/logo-neh.png" alt="Nehanda" />
+              <img src="/images/logo-neh.png" alt="Nehanda" height="53" width="50"/>
             </div>
             <div class="neh-name">Nehanda</div>
             <div class="neh-tagline">Votre assistante shopping IA</div>
@@ -349,7 +349,7 @@
         <div class="dl-text">
           <div class="section-tag" style="justify-content: center;">Disponible maintenant</div>
           <h2>Téléchargez Tôswè Africa</h2>
-          <p>Gratuit sur Android et iOS. Commencez à découvrir les meilleurs produits locaux dès aujourd'hui.</p>
+          <p>Gratuit sur Android. Commencez à découvrir les meilleurs produits locaux dès aujourd'hui.</p>
           <div class="dl-btns">
             <!-- Download CTA -->
             <button class="cta-primary large" @click="download">
@@ -364,13 +364,14 @@
         <div class="dl-visual">
           <div class="dl-phone-stack">
             <div class="dl-phone" />
-            <div class="dl-phone dl-phone-front">
-              <div class="dl-phone-screen">
-                <div style="font-size: 2rem; margin-bottom: 12px;">🛒</div>
+            <div class="dl-phone dl-phone-front"><div class="dl-phone-screen">
+                <ShoppingBag :size="28" stroke-width="1.5" style="color: var(--terra); margin-bottom: 12px;" />
                 <div style="font-weight: 800; color: var(--text); margin-bottom: 6px; font-family: 'Playfair Display', serif;">Tôswè Africa</div>
                 <div style="font-size: 0.75rem; color: var(--text-light);">L'app est disponible !</div>
                 <div style="margin-top: 16px;">
-                  <div class="dl-rating">⭐⭐⭐⭐⭐</div>
+                  <div class="dl-rating">
+                    <Star v-for="i in 5" :key="i" :size="13" :fill="'#C9963A'" style="color: #C9963A;" />
+                  </div>
                   <div style="font-size: 0.7rem; color: var(--text-light); margin-top: 4px;">4.9 (1 200 avis)</div>
                 </div>
               </div>
@@ -387,7 +388,7 @@ import {
   Download, ArrowRight, MessageCircle, Smartphone,
   Globe, Target, Zap, Lock, Truck, Users,
   Star, Package, Wallet, CheckCircle,
-  Store, TrendingUp, MapPin
+  Store, TrendingUp, MapPin, ShoppingBag
 } from 'lucide-vue-next'
 
 const { download } = useDownload()
@@ -404,10 +405,10 @@ const nehandaFeatures = [
   { icon: '💬', title: 'Conversation naturelle', desc: 'Parlez en français ou en langues locales. Nehanda vous comprend.' },
   { icon: '🎯', title: 'Recommandations IA', desc: 'Suggestions personnalisées basées sur vos préférences et votre localisation.' },
   { icon: '⚡', title: 'Commande en secondes', desc: 'Commandez directement depuis la conversation, en quelques secondes.' },
-  { icon: '🔒', title: 'Paiement sécurisé', desc: 'Mobile Money, Orange Money, Wave — paiements sécurisés et vérifiés.' },
+  { icon: '🔒', title: 'Paiement sécurisé', desc: 'Mobile Money — paiements sécurisés et vérifiés.' },
 ]
 
-const nehandaChips = ['🫒 Produits locaux', '📦 Livraison rapide', '🤖 IA intégrée', '💳 Mobile Money']
+const nehandaChips = ['Produits locaux', 'Livraison rapide', 'IA intégrée', 'Mobile Money']
 
 const nehandaStats = [
   { val: '4 200+', label: 'commandes/mois' },
@@ -949,7 +950,9 @@ const vendorStats = [
   box-shadow: 0 20px 50px rgba(125,38,15,0.2);
 }
 .dl-phone-screen { text-align: center; padding: 20px; }
-.dl-rating { font-size: 1rem; letter-spacing: 2px; }
+.dl-rating { font-size: 1rem; letter-spacing: 2px;   display: flex;
+  justify-content: center;
+  gap: 2px;}
 
 /* ── RESPONSIVE ─────────────────────────────────────── */
 @media (max-width: 1024px) {

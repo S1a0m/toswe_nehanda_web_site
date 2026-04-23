@@ -6,11 +6,11 @@
       <div class="footer-brand">
         <div class="logo-pill">
           <div class="logo-mark">
-            <img src="/images/logo.png" alt="Tôswè Africa Logo" srcset="">
+            <img src="/images/logo-tsw-foot.png" alt="Tôswè Africa Logo" srcset="">
           </div>
           <div>
             <div class="logo-name">Tôswè Africa</div>
-            <div class="logo-sub">L'e-commerce africain par l'IA</div>
+            <div class="logo-sub">Nous vendons pour vous</div>
           </div>
         </div>
         <p class="brand-desc">
@@ -62,13 +62,16 @@
 
     <div class="footer-bottom">
       <p>© 2025 Tôswè Africa. Tous droits réservés.</p>
-      <p class="made">Fait avec ❤️ au Bénin 🇧🇯</p>
+      <p class="made">
+        <MapPin :size="14" style="color: rgba(255,255,255,0.4); margin-right: 4px;" /> 
+        Bénin 🇧🇯
+      </p>
     </div>
   </footer>
 </template>
 
 <script setup>
-import { Facebook, Twitter, MessageCircle } from 'lucide-vue-next'
+import { Facebook, Twitter, MessageCircle, MapPin, Map } from 'lucide-vue-next'
 </script>
 
 <style scoped>
@@ -134,7 +137,11 @@ import { Facebook, Twitter, MessageCircle } from 'lucide-vue-next'
   display: flex; justify-content: space-between; align-items: center;
 }
 .footer-bottom p { font-size: 0.8rem; }
-.made { color: rgba(255,255,255,0.3); }
+.made {
+  color: rgba(255,255,255,0.3);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+}
 
 @media (max-width: 900px) {
   .footer-inner {
