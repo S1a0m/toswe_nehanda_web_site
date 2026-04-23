@@ -5,7 +5,7 @@
       <!-- Logo -->
       <NuxtLink to="/" class="logo">
         <div class="logo-mark">
-          <span>Nɔ</span>
+          <img src="/images/logo.png" alt="Tôswè Africa Logo" srcset="">
         </div>
         <div class="logo-text">
           <span class="logo-name">Tôswè</span>
@@ -20,6 +20,7 @@
         <a href="/#nehanda" @click="menuOpen = false">Nehanda</a>
         <a href="/#how" @click="menuOpen = false">Comment ça marche</a>
         <button class="btn-dl mobile-only" @click="download">
+          <Download :size="16" />
           Télécharger l'app
         </button>
       </nav>
@@ -27,11 +28,10 @@
       <!-- CTA + hamburger -->
       <div class="nav-right">
         <button class="btn-dl desktop-only" @click="download">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-            <path d="M12 16V4M6 10l6 6 6-6"/><path d="M4 20h16"/>
-          </svg>
+          <Download :size="16" />
           Télécharger l'app
         </button>
+        <!-- et dans nav-links -->
         <button class="hamburger" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen" aria-label="Menu">
           <span :class="{ open: menuOpen }"></span>
           <span :class="{ open: menuOpen }"></span>
@@ -47,6 +47,7 @@
 
 <script setup>
 import { useDownload } from '~/composables/useDownload'
+import { Download } from 'lucide-vue-next'
 
 const isScrolled = ref(false)
 const menuOpen   = ref(false)
@@ -82,9 +83,9 @@ onMounted(() => {
 .logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .logo-mark {
   width: 38px; height: 38px; border-radius: 12px;
-  background: var(--terra);
+ /* background: var(--terra);*/
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 14px rgba(198, 90, 46, 0.35);
+  /*box-shadow: 0 4px 14px rgba(198, 90, 46, 0.35);*/
 }
 .logo-mark span {
   font-family: 'Playfair Display', serif;

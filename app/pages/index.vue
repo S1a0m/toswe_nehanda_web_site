@@ -42,23 +42,25 @@
             </div>
           </div>
 
+          <!-- Hero CTAs -->
           <div class="hero-ctas">
             <button class="cta-primary" @click="download">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 16V4M6 10l6 6 6-6"/><path d="M4 20h16"/></svg>
+              <Download :size="18" />
               Télécharger l'app
             </button>
             <NuxtLink to="/marketplace" class="cta-secondary">
-              Explorer le marketplace →
+              Explorer le marketplace
+              <ArrowRight :size="16" />
             </NuxtLink>
           </div>
 
           <div class="store-badges">
             <a href="#" class="store-pill">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76a2 2 0 01-1.18-1.8V2.04A2 2 0 013.18.28l12.04 11.74-12.04 11.74zm14.16-13.5l2.76-1.6a1 1 0 010 1.68l-2.76-1.6-2.1-2.04 2.1-2.04zm-1.4 1.26L4.38 22.84l9.84-5.68 1.72-1.64zM4.38 1.16l11.56 11.32-1.72-1.64L4.38 1.16z"/></svg>
+              <Smartphone :size="15" />
               Google Play
             </a>
             <a href="#" class="store-pill">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              <Smartphone :size="15" />
               App Store
             </a>
           </div>
@@ -112,16 +114,16 @@
             </div>
           </div>
 
-          <!-- Floating badges -->
+          <!-- Float badges -->
           <div class="float-badge float-badge-1">
-            <span>📦</span>
+            <Package :size="20" />
             <div>
               <div class="fb-label">Commandes</div>
               <div class="fb-val">+2 400/mois</div>
             </div>
           </div>
           <div class="float-badge float-badge-2">
-            <span>⭐</span>
+            <Star :size="20" />
             <div>
               <div class="fb-label">Satisfaction</div>
               <div class="fb-val">4.9 / 5.0</div>
@@ -131,21 +133,19 @@
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════
-         BRANDS / SOCIAL PROOF BAR
-    ═══════════════════════════════════════════ -->
-    <section class="proof-bar">
+    <!-- Proof bar -->
+     <section class="proof-bar">
       <div class="proof-inner">
         <p class="proof-label">Disponible via</p>
-        <div class="proof-logos">
-          <div class="proof-logo">📱 WhatsApp</div>
-          <div class="proof-sep">·</div>
-          <div class="proof-logo">💬 Messenger</div>
-          <div class="proof-sep">·</div>
-          <div class="proof-logo">🤖 App Mobile</div>
-          <div class="proof-sep">·</div>
-          <div class="proof-logo">🌐 Web</div>
-        </div>
+    <div class="proof-logos">
+      <div class="proof-logo"><MessageCircle :size="16" /> WhatsApp</div>
+      <div class="proof-sep">·</div>
+      <div class="proof-logo"><MessageCircle :size="16" /> Messenger</div>
+      <div class="proof-sep">·</div>
+      <div class="proof-logo"><Smartphone :size="16" /> App Mobile</div>
+      <div class="proof-sep">·</div>
+      <div class="proof-logo"><Globe :size="16" /> Web</div>
+    </div>
       </div>
     </section>
 
@@ -162,12 +162,34 @@
             Elle comprend vos besoins en français, et bientôt en langues locales,
             pour vous proposer les meilleurs produits locaux au meilleur prix.
           </p>
+          <!-- Nehanda features (remplace feat.icon dans le v-for) -->
           <div class="nehanda-features">
-            <div v-for="feat in nehandaFeatures" :key="feat.title" class="neh-feat">
-              <div class="neh-feat-icon">{{ feat.icon }}</div>
+            <div class="neh-feat">
+              <div class="neh-feat-icon"><MessageCircle :size="20" /></div>
               <div>
-                <div class="neh-feat-title">{{ feat.title }}</div>
-                <div class="neh-feat-desc">{{ feat.desc }}</div>
+                <div class="neh-feat-title">Conversation naturelle</div>
+                <div class="neh-feat-desc">Parlez en français ou en langues locales.</div>
+              </div>
+            </div>
+            <div class="neh-feat">
+              <div class="neh-feat-icon"><Target :size="20" /></div>
+              <div>
+                <div class="neh-feat-title">Recommandations IA</div>
+                <div class="neh-feat-desc">Suggestions personnalisées basées sur vos préférences.</div>
+              </div>
+            </div>
+            <div class="neh-feat">
+              <div class="neh-feat-icon"><Zap :size="20" /></div>
+              <div>
+                <div class="neh-feat-title">Commande en secondes</div>
+                <div class="neh-feat-desc">Commandez directement depuis la conversation.</div>
+              </div>
+            </div>
+            <div class="neh-feat">
+              <div class="neh-feat-icon"><Lock :size="20" /></div>
+              <div>
+                <div class="neh-feat-title">Paiement sécurisé</div>
+                <div class="neh-feat-desc">Mobile Money, Orange Money, Wave.</div>
               </div>
             </div>
           </div>
@@ -179,7 +201,7 @@
         <div class="nehanda-visual">
           <div class="neh-card-main">
             <div class="neh-avatar-big">
-              <span>Nɔ</span>
+              <img src="/images/logo-neh.png" alt="Nehanda" />
             </div>
             <div class="neh-name">Nehanda</div>
             <div class="neh-tagline">Votre assistante shopping IA</div>
@@ -206,13 +228,28 @@
         <h2>En 3 étapes simples</h2>
         <p class="section-sub">De la conversation à la livraison, Nehanda s'occupe de tout.</p>
       </div>
+
+      <!-- Steps (remplace step.icon dans le v-for) -->
       <div class="steps-grid">
-        <div v-for="(step, i) in steps" :key="step.title" class="step-card">
-          <div class="step-num">{{ i + 1 }}</div>
-          <div class="step-icon">{{ step.icon }}</div>
-          <h3 class="step-title">{{ step.title }}</h3>
-          <p class="step-desc">{{ step.desc }}</p>
-          <div v-if="i < steps.length - 1" class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-icon"><MessageCircle :size="32" /></div>
+          <h3 class="step-title">Discutez avec Nehanda</h3>
+          <p class="step-desc">Décrivez ce que vous cherchez en langage naturel.</p>
+          <div class="step-arrow"><ArrowRight :size="16" /></div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-icon"><Target :size="32" /></div>
+          <h3 class="step-title">Découvrez les produits</h3>
+          <p class="step-desc">Nehanda analyse et vous présente une sélection personnalisée.</p>
+          <div class="step-arrow"><ArrowRight :size="16" /></div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-icon"><Truck :size="32" /></div>
+          <h3 class="step-title">Recevez votre commande</h3>
+          <p class="step-desc">Payez via Mobile Money et recevez votre commande chez vous.</p>
         </div>
       </div>
     </section>
@@ -225,11 +262,32 @@
         <div class="section-tag" style="justify-content: center;">Pourquoi Tôswè</div>
         <h2>Conçu pour l'Afrique,<br>par des Africains</h2>
       </div>
+      <!-- Features (remplace feat.icon dans le v-for) -->
       <div class="features-grid">
-        <div v-for="feat in features" :key="feat.title" class="feat-card" :class="{ wide: feat.wide }">
-          <div class="feat-icon">{{ feat.icon }}</div>
-          <h3>{{ feat.title }}</h3>
-          <p>{{ feat.desc }}</p>
+        <div class="feat-card">
+          <div class="feat-icon"><Globe :size="28" /></div>
+          <h3>Produits 100% locaux</h3>
+          <p>Alimentaires, artisanaux, cosmétiques — tous vérifiés et sourcés localement.</p>
+        </div>
+        <div class="feat-card wide">
+          <div class="feat-icon"><Zap :size="28" /></div>
+          <h3>IA de pointe</h3>
+          <p>Nehanda utilise les derniers modèles de langage pour comprendre vos besoins.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><Smartphone :size="28" /></div>
+          <h3>Multi-canal</h3>
+          <p>WhatsApp, Messenger, application mobile ou web.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><Wallet :size="28" /></div>
+          <h3>Prix transparents</h3>
+          <p>Pas de frais cachés. Comparez les prix entre vendeurs.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><Truck :size="28" /></div>
+          <h3>Livraison rapide</h3>
+          <p>Réseau de livreurs locaux fiables. Livraison en 2h à Cotonou.</p>
         </div>
       </div>
     </section>
@@ -243,25 +301,41 @@
           <div class="section-tag" style="color: var(--gold-light);">Pour les vendeurs</div>
           <h2 style="color: white;">Vendez facilement<br>avec Tôswè</h2>
           <p>Rejoignez des milliers de vendeurs africains qui développent leur activité. Gérez vos produits, recevez vos commandes et atteignez de nouveaux clients.</p>
+          <!-- Vendor stats -->
           <div class="vendor-stats">
-            <div v-for="vs in vendorStats" :key="vs.label" class="vs-item">
-              <div class="vs-val">{{ vs.val }}</div>
-              <div class="vs-lbl">{{ vs.label }}</div>
+            <div class="vs-item">
+              <div class="vs-val">500+</div>
+              <div class="vs-lbl">vendeurs actifs</div>
+            </div>
+            <div class="vs-item">
+              <div class="vs-val">85k</div>
+              <div class="vs-lbl">FCFA/mois en moyenne</div>
+            </div>
+            <div class="vs-item">
+              <div class="vs-val">98%</div>
+              <div class="vs-lbl">taux de satisfaction</div>
             </div>
           </div>
-          <button class="cta-vendor" @click="download">Devenir vendeur →</button>
+          <button class="cta-vendor" @click="download">
+            Devenir vendeur <ArrowRight :size="16" />
+          </button>
         </div>
         <div class="vendor-card-wrap">
+          <!-- Vendor card -->
           <div class="vendor-card">
-            <div class="vendor-avatar">👩🏾‍💼</div>
+            <div class="vendor-avatar"><Users :size="36" /></div>
             <div class="vendor-card-name">Amara Diallo</div>
-            <div class="vendor-card-loc">📍 Cotonou, Bénin</div>
+            <div class="vendor-card-loc">
+              <MapPin :size="13" /> Cotonou, Bénin <!-- import MapPin -->
+            </div>
             <div class="vendor-card-stats">
               <div class="vc-stat"><strong>340</strong><span>Commandes</span></div>
               <div class="vc-stat"><strong>4.9★</strong><span>Note</span></div>
               <div class="vc-stat"><strong>85k</strong><span>FCFA/mois</span></div>
             </div>
-            <div class="vendor-card-tag">✓ Boutique vérifiée</div>
+            <div class="vendor-card-tag">
+              <CheckCircle :size="13" /> Boutique vérifiée
+            </div>
           </div>
         </div>
       </div>
@@ -277,11 +351,14 @@
           <h2>Téléchargez Tôswè Africa</h2>
           <p>Gratuit sur Android et iOS. Commencez à découvrir les meilleurs produits locaux dès aujourd'hui.</p>
           <div class="dl-btns">
+            <!-- Download CTA -->
             <button class="cta-primary large" @click="download">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 16V4M6 10l6 6 6-6"/><path d="M4 20h16"/></svg>
+              <Download :size="20" />
               Télécharger maintenant
             </button>
-            <NuxtLink to="/marketplace" class="cta-secondary large">Voir le marketplace →</NuxtLink>
+            <NuxtLink to="/marketplace" class="cta-secondary large">
+              Voir le marketplace <ArrowRight :size="16" />
+            </NuxtLink>
           </div>
         </div>
         <div class="dl-visual">
@@ -306,6 +383,13 @@
 </template>
 
 <script setup>
+import {
+  Download, ArrowRight, MessageCircle, Smartphone,
+  Globe, Target, Zap, Lock, Truck, Users,
+  Star, Package, Wallet, CheckCircle,
+  Store, TrendingUp, MapPin
+} from 'lucide-vue-next'
+
 const { download } = useDownload()
 
 const trustAvatars = ['#f5c842', '#7bc47e', '#ffaaaa', '#c084fc']
@@ -666,7 +750,7 @@ const vendorStats = [
 }
 .neh-avatar-big {
   width: 90px; height: 90px; border-radius: 50%;
-  background: var(--terra);
+  /*background: var(--terra);*/
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 16px;
   box-shadow: 0 10px 30px rgba(198,90,46,0.35);

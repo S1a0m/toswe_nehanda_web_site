@@ -12,19 +12,14 @@
           Des milliers de produits vérifiés, directement depuis les vendeurs locaux.
           Trouvez ce dont vous avez besoin, livré chez vous.
         </p>
-        <!-- Search bar -->
-        <div class="search-bar">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-          </svg>
-          <input
-            v-model="searchQuery"
-            type="text"
-            placeholder="Rechercher un produit, une boutique…"
-            @input="debouncedSearch"
-          />
-          <button v-if="searchQuery" class="search-clear" @click="clearSearch">✕</button>
-        </div>
+<!-- Search bar -->
+<div class="search-bar">
+  <Search :size="18" />
+  <input v-model="searchQuery" type="text" placeholder="Rechercher un produit, une boutique…" @input="debouncedSearch" />
+  <button v-if="searchQuery" class="search-clear" @click="clearSearch">
+    <X :size="14" />
+  </button>
+</div>
       </div>
     </section>
 
@@ -38,7 +33,7 @@
             :class="['cat-chip', { active: selectedCat === cat.id }]"
             @click="selectCategory(cat.id)"
           >
-            {{ cat.icon }} {{ cat.name }}
+          {{ cat.name }}
           </button>
         </div>
       </div>
@@ -71,7 +66,9 @@
 
         <!-- Empty -->
         <div v-else-if="filteredProducts.length === 0" class="empty-state">
-          <div class="empty-icon">🔍</div>
+          <div class="empty-icon">
+            <Search :size="32" stroke-width="1.5" />
+          </div>
           <h3>Aucun produit trouvé</h3>
           <p>Essayez une autre catégorie ou modifiez votre recherche.</p>
           <button class="cta-primary" @click="clearSearch(); selectCategory(null)">
@@ -87,8 +84,12 @@
             class="product-card"
             @click="onProductClick(product)"
           >
-            <!-- Badge -->
+            <!-- Product badge -->
             <div v-if="product.badge" class="product-badge" :class="product.badge.type">
+              <Zap      v-if="product.badge.type === 'sponsored'" :size="10" />
+              <Sparkles v-else-if="product.badge.type === 'promo'"    :size="10" />
+              <Package  v-else-if="product.badge.type === 'new'"      :size="10" />
+              <TrendingUp v-else-if="product.badge.type === 'popular'" :size="10" />
               {{ product.badge.label }}
             </div>
             <!-- Image -->
@@ -100,7 +101,6 @@
                 loading="lazy"
                 @error="(e) => e.target.style.display = 'none'"
               />
-              <span v-else class="product-emoji">{{ product.emoji || '📦' }}</span>
             </div>
             <!-- Info -->
             <div class="product-info">
@@ -111,11 +111,14 @@
                   {{ formatPrice(product.price) }}
                   <span>FCFA</span>
                 </div>
+                <!-- Product rating -->
                 <div v-if="product.total_rating?.count > 0" class="product-rating">
-                  ⭐ {{ product.total_rating.average }}
+                  <Star :size="12" :fill="'currentColor'" /> {{ product.total_rating.average }}
                 </div>
               </div>
+              <!-- Product button -->
               <button class="btn-order" @click.stop="onProductClick(product)">
+                <ShoppingCart :size="14" />
                 Commander
               </button>
             </div>
@@ -163,9 +166,15 @@
               </div>
               <div class="vendor-info">
                 <div class="vendor-name">{{ vendor.shop_name }}</div>
-                <div class="vendor-loc">📍 {{ vendor.about|| 'Bénin' }}</div>
+                <!-- Vendor location -->
+                <div class="vendor-loc">
+                  <MapPin :size="11" /> {{ vendor.about || 'Bénin' }}
+                </div>
               </div>
-              <div v-if="vendor.is_brand" class="vendor-verified" title="Marque vérifiée">✓</div>
+              <!-- Vendor delivery mode -->
+              <div class="vendor-verified" v-if="vendor.is_brand" title="Marque vérifiée">
+                <CheckCircle :size="13" />
+              </div>
             </div>
 
             <div class="vendor-products">
@@ -217,11 +226,13 @@
           Discutez avec Nehanda, suivez vos commandes et payez en un clic.
         </p>
         <div class="mp-cta-btns">
+          <!-- Download CTA -->
           <button class="cta-primary large" @click="download">
+            <Download :size="18" />
             Télécharger l'app gratuitement
           </button>
           <NuxtLink to="/" class="cta-secondary large">
-            En savoir plus sur Tôswè →
+            En savoir plus sur Tôswè <ArrowRight :size="16" />
           </NuxtLink>
         </div>
       </div>
@@ -230,6 +241,12 @@
 </template>
 
 <script setup>
+import {
+  Search, X, ChevronDown, Star, Zap, Sparkles,
+  TrendingUp, Package, MapPin, Home, Store,
+  ShoppingCart, Download, ArrowRight, CheckCircle
+} from 'lucide-vue-next'
+
 const { download } = useDownload()
 
 // ── Config ─────────────────────────────────────────────
@@ -261,9 +278,9 @@ function getEmoji(name = '') {
 
 function getBadge(product) {
   if (product.is_sponsored) return { type: 'sponsored', label: '✦ Sponsorisé' }
-  if (product.status === 'promo') return { type: 'promo',     label: '🔥 Promo'     }
-  if (product.status === 'new')   return { type: 'new',       label: '🆕 Nouveau'   }
-  if (product.status === 'popular') return { type: 'popular', label: '⭐ Populaire' }
+  if (product.status === 'promo') return { type: 'promo',     label: 'Promo'     }
+  if (product.status === 'new')   return { type: 'new',       label: 'Nouveau'   }
+  if (product.status === 'popular') return { type: 'popular', label: 'Populaire' }
   return null
 }
 
@@ -633,7 +650,17 @@ h1 em { font-style: italic; color: var(--gold-light); }
 
 /* Empty state */
 .empty-state { text-align: center; padding: 80px 20px; }
-.empty-icon { font-size: 3rem; margin-bottom: 16px; }
+.empty-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--r-lg);
+  background: var(--beige2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  margin: 0 auto 16px;
+}
 .empty-state h3 {
   font-family: 'Playfair Display', serif;
   font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 8px;
