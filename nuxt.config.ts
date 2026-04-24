@@ -23,4 +23,10 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/global.css'],
+
+  vite: {
+    server: {
+      allowedHosts: true
+    }
+  }
 })
