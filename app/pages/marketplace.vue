@@ -168,7 +168,7 @@
                 <div class="vendor-name">{{ vendor.shop_name }}</div>
                 <!-- Vendor location -->
                 <div class="vendor-loc">
-                  <MapPin :size="11" /> {{ vendor.about || 'Bénin' }}
+                  <MapPin :size="11" /> {{ (vendor.about || 'Bénin').slice(0, 30) + ((vendor.about?.length > 30) ? '...' : '') }}
                 </div>
               </div>
               <!-- Vendor delivery mode -->
@@ -250,7 +250,7 @@ import {
 const { download } = useDownload()
 
 // ── Config ─────────────────────────────────────────────
-const API_BASE = 'http://127.0.0.1:8000/api'
+const API_BASE = 'https://toswe-africa.store/api'
 
 
 const gradients = [

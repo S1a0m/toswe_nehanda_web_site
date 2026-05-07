@@ -5,16 +5,15 @@
       <div v-if="qrModalOpen" class="modal-overlay" @click.self="closeQrModal">
         <div class="modal-box">
           <button class="modal-close" @click="closeQrModal" aria-label="Fermer">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-              <path d="M18 6L6 18M6 6l12 12"/>
-            </svg>
+            <X :size="16" stroke-width="2.5" />
           </button>
 
-          <div class="modal-icon">📱</div>
+          <div class="modal-icon">
+            <Smartphone :size="28" stroke-width="1.5" />
+          </div>
           <h3>Télécharger Tôswè Africa</h3>
-          <p>Scannez le QR code avec votre téléphone pour télécharger l'application.</p>
+          <p>Scannez le QR code pour télécharger l'app, ou discutez directement avec Nehanda sur Messenger.</p>
 
-          <!-- QR code placeholder — remplacer par un vrai QR -->
           <div class="qr-wrap">
             <div class="qr-placeholder">
               <div class="qr-grid">
@@ -28,12 +27,12 @@
 
           <div class="store-links">
             <a :href="PLAY_STORE" target="_blank" class="store-btn android">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76a2 2 0 01-1.18-1.8V2.04A2 2 0 013.18.28l12.04 11.74-12.04 11.74zm14.16-13.5l2.76-1.6a1 1 0 010 1.68l-2.76-1.6-2.1-2.04 2.1-2.04zm-1.4 1.26L4.38 22.84l9.84-5.68 1.72-1.64zM4.38 1.16l11.56 11.32-1.72-1.64L4.38 1.16z"/></svg>
-              Google Play
+              <Smartphone :size="18" stroke-width="2" />
+              sur Google Play
             </a>
-            <a :href="APP_STORE" target="_blank" class="store-btn ios">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-              App Store
+            <a :href="MESSENGER" target="_blank" class="store-btn messenger">
+              <MessageCircle :size="18" stroke-width="2" />
+              sur Messenger
             </a>
           </div>
         </div>
@@ -43,6 +42,7 @@
 </template>
 
 <script setup>
+import { Smartphone, MessageCircle, X } from 'lucide-vue-next'
 const { qrModalOpen, closeQrModal } = useDownload()
 
 const PLAY_STORE = 'https://play.google.com/store/apps/details?id=africa.toswe.app'
@@ -78,7 +78,14 @@ const qrPattern = [1,2,3,4,5,6,7,9,13,15,21,22,23,24,25,26,27,29,33,35,
   color: var(--text-mid); transition: background 0.2s;
 }
 .modal-close:hover { background: var(--border); }
-.modal-icon { font-size: 2.5rem; margin-bottom: 14px; }
+.modal-icon {
+  width: 56px; height: 56px;
+  border-radius: var(--r-md);
+  background: var(--terra-light);
+  color: var(--terra);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
 h3 {
   font-family: 'Playfair Display', serif;
   font-size: 1.4rem; font-weight: 800;
@@ -127,10 +134,13 @@ p { font-size: 0.88rem; color: var(--text-light); line-height: 1.65; margin-bott
 }
 .store-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .store-btn.android {
-  background: var(--terra); color: white;
+  background: var(--terra);
+  color: white;
 }
-.store-btn.ios {
-  background: var(--text); color: white;
+
+.store-btn.messenger {
+  background: var(--text);
+  color: white;
 }
 
 /* Transitions */

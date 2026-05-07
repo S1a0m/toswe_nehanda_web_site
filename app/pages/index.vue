@@ -59,10 +59,10 @@
               <Smartphone :size="15" />
               Google Play
             </a>
-            <!--<a href="#" class="store-pill">
-              <Smartphone :size="15" />
-              App Store
-            </a>-->
+            <a href="#" class="store-pill">
+              <MessageCircle :size="15" />
+              Messenger
+            </a>
           </div>
         </div>
 
@@ -348,7 +348,7 @@
       <div class="dl-inner">
         <div class="dl-text">
           <div class="section-tag" style="justify-content: center;">Disponible maintenant</div>
-          <h2>Téléchargez Tôswè Africa</h2>
+          <h2>Téléchargez Nehanda</h2>
           <p>Gratuit sur Android. Commencez à découvrir les meilleurs produits locaux dès aujourd'hui.</p>
           <div class="dl-btns">
             <!-- Download CTA -->
@@ -366,7 +366,7 @@
             <div class="dl-phone" />
             <div class="dl-phone dl-phone-front"><div class="dl-phone-screen">
                 <ShoppingBag :size="28" stroke-width="1.5" style="color: var(--terra); margin-bottom: 12px;" />
-                <div style="font-weight: 800; color: var(--text); margin-bottom: 6px; font-family: 'Playfair Display', serif;">Tôswè Africa</div>
+                <div style="font-weight: 800; color: var(--text); margin-bottom: 6px; font-family: 'Playfair Display', serif;">Nehanda</div>
                 <div style="font-size: 0.75rem; color: var(--text-light);">L'app est disponible !</div>
                 <div style="margin-top: 16px;">
                   <div class="dl-rating">
