@@ -71,52 +71,18 @@
           <div class="phone-glow" />
           <div class="phone-wrap animate-float">
             <div class="phone">
-              <!-- Notch -->
               <div class="phone-notch" />
               <div class="phone-screen">
-                <!-- Chat header -->
-                <div class="chat-header">
-                  <div class="chat-ava">
-                    <img src="/images/logo-neh.png" alt="Nehanda" height="27" width="26"/>
-                  </div>
-                  <div class="chat-info">
-                    <div class="chat-name">Nehanda</div>
-                    <div class="chat-status"><span class="online-dot" />En ligne</div>
-                  </div>
-                </div>
-                <!-- Messages -->
-                <div class="chat-body">
-                  <div class="msg msg-bot">
-                    Bonjour ! 👋 Je suis Nehanda. Que cherchez-vous aujourd'hui ?
-                  </div>
-                  <div class="msg msg-user">
-                    Huile de palme rouge à moins de 2000 FCFA
-                  </div>
-                  <div class="msg msg-bot">
-                    🫒 Parfait ! Voici les meilleures offres :
-                  </div>
-                  <div class="product-cards">
-                    <div v-for="p in phonePreviews" :key="p.name" class="product-mini">
-                      <div class="product-mini-img">{{ p.emoji }}</div>
-                      <div class="product-mini-info">
-                        <div class="product-mini-name">{{ p.name }}</div>
-                        <div class="product-mini-price">{{ p.price }}</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Input -->
-                <div class="chat-input-bar">
-                  <div class="chat-input-field">Demandez à Nehanda…</div>
-                  <div class="chat-send-btn">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
-                  </div>
-                </div>
+                <img
+                  src="/images/nehanda-screen.jpg"
+                  alt="Nehanda en action"
+                  class="phone-screenshot"
+                />
               </div>
             </div>
           </div>
 
-          <!-- Float badges -->
+          <!-- Float badges — inchangés -->
           <div class="float-badge float-badge-1">
             <Package :size="20" />
             <div>
@@ -605,9 +571,17 @@ const vendorStats = [
   background: #1a0f0a; margin: 0 auto 8px;
 }
 .phone-screen {
-  background: var(--beige); border-radius: 33px;
-  height: calc(100% - 32px); display: flex; flex-direction: column;
+  border-radius: 33px;
+  height: calc(100% - 32px);
   overflow: hidden;
+}
+
+.phone-screenshot {
+  width: 100%;
+  height: 100%;
+  /* object-fit: cover; */
+  object-position: top;
+  display: block;
 }
 .chat-header {
   background: var(--terra); padding: 12px 14px;
