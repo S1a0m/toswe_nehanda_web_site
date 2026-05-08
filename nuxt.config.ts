@@ -1,4 +1,3 @@
-// nuxt.config.ts
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-01',
   devtools: { enabled: false },
@@ -9,9 +8,6 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Tôswè Africa est la plateforme e-commerce africaine intelligente. Discutez avec Nehanda pour trouver, comparer et commander vos produits locaux.' },
-        { property: 'og:title', content: 'Tôswè Africa' },
-        { property: 'og:description', content: 'Découvrez Tôswè Africa et Nehanda, votre assistante IA pour l\'e-commerce africain.' },
         { name: 'theme-color', content: '#C65A2E' },
       ],
       link: [

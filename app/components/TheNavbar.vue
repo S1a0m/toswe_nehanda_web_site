@@ -62,7 +62,7 @@ onMounted(() => {
 
 <style scoped>
 .navbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 800;
   transition: background 0.3s, box-shadow 0.3s, backdrop-filter 0.3s;
 }
 

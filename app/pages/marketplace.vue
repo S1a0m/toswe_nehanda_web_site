@@ -219,7 +219,7 @@
     <!-- ── DOWNLOAD CTA ───────────────────────────────── -->
     <section class="mp-cta">
       <div class="mp-cta-inner">
-        <div class="mp-cta-icon">📱</div>
+        <div class="mp-cta-icon"><Smartphone :size="44" /></div>
         <h2>Commandez via l'application</h2>
         <p>
           Obtenez une meilleure expérience avec l'app Tôswè Africa.
@@ -244,7 +244,7 @@
 import {
   Search, X, ChevronDown, Star, Zap, Sparkles,
   TrendingUp, Package, MapPin, Home, Store,
-  ShoppingCart, Download, ArrowRight, CheckCircle
+  ShoppingCart, Download, ArrowRight, CheckCircle, Smartphone
 } from 'lucide-vue-next'
 
 const { download } = useDownload()
@@ -760,6 +760,25 @@ h1 em { font-style: italic; color: var(--gold-light); }
 .mp-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 .mp-cta-btns .cta-secondary { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.85); }
 .mp-cta-btns .cta-secondary:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+.cta-secondary {
+  background: transparent; border: 1.5px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.85); padding: 13px 30px;
+  border-radius: 50px; font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: all 0.2s;
+}
+.cta-secondary:hover { background: rgba(255,255,255,0.1); border-color: white; color: white; }
+.cta-primary {
+  background: var(--terra); color: white; border: none;
+  padding: 13px 30px; border-radius: 50px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: background 0.2s;
+}
+.cta-primary:hover { background: var(--terra-dark); }
+.cta-primary.large, .cta-secondary.large { padding: 16px 36px; font-size: 1rem; }
 
 /* ── RESPONSIVE ─────────────────────────────────── */
 @media (max-width: 1100px) {

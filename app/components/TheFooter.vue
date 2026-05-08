@@ -18,9 +18,15 @@
           une assistante intelligente conçue pour l'Afrique.
         </p>
         <div class="socials">
-          <a href="#" aria-label="Facebook" class="social-btn"><Facebook :size="15" /></a>
-          <a href="#" aria-label="X/Twitter" class="social-btn"><Twitter :size="15" /></a>
-          <a href="#" aria-label="WhatsApp" class="social-btn"><MessageCircle :size="15" /></a>
+          <a href="https://www.facebook.com/people/T%C3%B4sw%C3%A8-Africa/61581278856867/" aria-label="Facebook" target="_blank" class="social-btn"><Facebook :size="15" /></a>
+          <a href="#" aria-label="TikTok" class="social-btn">
+            <!-- TikTok n'est pas dans lucide, SVG custom -->
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.79 1.52V6.75a4.85 4.85 0 0 1-1.02-.06z"/>
+            </svg>
+          </a>
+          <a href="mailto:contact@toswe-africa.store" aria-label="Email" class="social-btn"><Mail :size="15" /></a>
+          <a href="https://wa.me/2290154141287" target="_blank" aria-label="WhatsApp" class="social-btn"><MessageCircle :size="15" /></a>
         </div>
       </div>
 
@@ -83,7 +89,7 @@
 </template>
 
 <script setup>
-import { Facebook, Twitter, MessageCircle, MapPin, Smartphone, ArrowRight } from 'lucide-vue-next'
+import { Facebook, Mail, MessageCircle, MapPin, Smartphone, ArrowRight } from 'lucide-vue-next'
 const { showQrModal } = useDownload()
 </script>
 
