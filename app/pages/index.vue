@@ -33,7 +33,7 @@
 
           <div class="hero-trust">
             <div class="trust-avatars">
-              <div v-for="(av, i) in trustAvatars" :key="i" class="trust-av" :style="{ background: av }">{{ trustEmojis[i] }}</div>
+              <div v-for="(av, i) in trustAvatars" :key="i" class="trust-av" :style="{ background: av }"><img :src="trustEmojis[i]" alt="Nehanda" height="27" width="26" style="border-radius: 50%;"/><!--{{ trustEmojis[i] }}--></div>
             </div>
             <div class="trust-text">
               <strong>+4 200</strong> commandes ce mois
@@ -76,7 +76,9 @@
               <div class="phone-screen">
                 <!-- Chat header -->
                 <div class="chat-header">
-                  <div class="chat-ava">Nɔ</div>
+                  <div class="chat-ava">
+                    <img src="/images/logo-neh.png" alt="Nehanda" height="27" width="26"/>
+                  </div>
                   <div class="chat-info">
                     <div class="chat-name">Nehanda</div>
                     <div class="chat-status"><span class="online-dot" />En ligne</div>
@@ -323,8 +325,8 @@
         <div class="vendor-card-wrap">
           <!-- Vendor card -->
           <div class="vendor-card">
-            <div class="vendor-avatar"><Users :size="36" /></div>
-            <div class="vendor-card-name">Amara Diallo</div>
+            <div class="vendor-avatar"><img src="/images/kk.png" alt="Kally Kakpo" style="width: 100%; height: 100%; object-fit: cover;" /></div>
+            <div class="vendor-card-name">Kally Kakpo</div>
             <div class="vendor-card-loc">
               <MapPin :size="13" /> Cotonou, Bénin <!-- import MapPin -->
             </div>
@@ -394,7 +396,7 @@ import {
 const { download } = useDownload()
 
 const trustAvatars = ['#f5c842', '#7bc47e', '#ffaaaa', '#c084fc']
-const trustEmojis  = ['👩🏾', '👨🏿', '👩🏽', '👨🏾']
+const trustEmojis  = ['/images/client_1.png', '/images/client_2.png', '/images/client_3.png', '/images/client_4.png']
 
 const phonePreviews = [
   { emoji: '🫒', name: 'Huile Palme', price: '1 500 F' },

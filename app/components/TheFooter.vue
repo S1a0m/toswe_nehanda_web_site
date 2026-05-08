@@ -18,19 +18,13 @@
           une assistante intelligente conçue pour l'Afrique.
         </p>
         <div class="socials">
-          <a href="#" aria-label="Facebook" class="social-btn">
-            <Facebook :size="15" />
-          </a>
-          <a href="#" aria-label="X/Twitter" class="social-btn">
-            <Twitter :size="15" />
-          </a>
-          <a href="#" aria-label="WhatsApp" class="social-btn">
-            <MessageCircle :size="15" />
-          </a>
+          <a href="#" aria-label="Facebook" class="social-btn"><Facebook :size="15" /></a>
+          <a href="#" aria-label="X/Twitter" class="social-btn"><Twitter :size="15" /></a>
+          <a href="#" aria-label="WhatsApp" class="social-btn"><MessageCircle :size="15" /></a>
         </div>
       </div>
 
-      <!-- Links -->
+      <!-- Plateforme -->
       <div class="footer-col">
         <h5>Plateforme</h5>
         <ul>
@@ -40,30 +34,48 @@
           <li><a href="/#how">Comment ça marche</a></li>
         </ul>
       </div>
+
+      <!-- Pour les vendeurs — app only -->
       <div class="footer-col">
         <h5>Pour les vendeurs</h5>
-        <ul>
-          <li><a href="#">Devenir vendeur</a></li>
-          <li><a href="#">Tableau de bord</a></li>
-          <li><a href="#">Promotions</a></li>
-          <li><a href="#">Support vendeur</a></li>
-        </ul>
+        <div class="app-only-block" @click="showQrModal">
+          <div class="app-only-badge">
+            <Smartphone :size="12" stroke-width="2.5" />
+            Sur l'app
+          </div>
+          <ul>
+            <li>Devenir vendeur</li>
+            <li>Tableau de bord</li>
+            <li>Promotions</li>
+            <li>Support vendeur</li>
+          </ul>
+          <span class="app-only-cta">Télécharger l'app <ArrowRight :size="12" /></span>
+        </div>
       </div>
+
+      <!-- Légal & Support — app only -->
       <div class="footer-col">
         <h5>Légal & Support</h5>
-        <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">CGU</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
+        <div class="app-only-block" @click="showQrModal">
+          <div class="app-only-badge">
+            <Smartphone :size="12" stroke-width="2.5" />
+            Sur l'app
+          </div>
+          <ul>
+            <li>À propos</li>
+            <li>CGU</li>
+            <li>Confidentialité</li>
+            <li>Contact</li>
+          </ul>
+          <span class="app-only-cta">Télécharger l'app <ArrowRight :size="12" /></span>
+        </div>
       </div>
     </div>
 
     <div class="footer-bottom">
       <p>© 2025 Tôswè Africa. Tous droits réservés.</p>
       <p class="made">
-        <MapPin :size="14" style="color: rgba(255,255,255,0.4); margin-right: 4px;" /> 
+        <MapPin :size="14" style="color: rgba(255,255,255,0.4); margin-right: 4px;" />
         Bénin 🇧🇯
       </p>
     </div>
@@ -71,7 +83,8 @@
 </template>
 
 <script setup>
-import { Facebook, Twitter, MessageCircle, MapPin, Map } from 'lucide-vue-next'
+import { Facebook, Twitter, MessageCircle, MapPin, Smartphone, ArrowRight } from 'lucide-vue-next'
+const { showQrModal } = useDownload()
 </script>
 
 <style scoped>
@@ -90,13 +103,7 @@ import { Facebook, Twitter, MessageCircle, MapPin, Map } from 'lucide-vue-next'
 .logo-pill { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
 .logo-mark {
   width: 40px; height: 40px; border-radius: 12px;
- /* background: var(--terra);
-  display: flex; align-items: center; justify-content: center;*/
   flex-shrink: 0;
-}
-.logo-mark span {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem; font-weight: 900; color: white;
 }
 .logo-name {
   font-family: 'Playfair Display', serif;
@@ -112,7 +119,6 @@ import { Facebook, Twitter, MessageCircle, MapPin, Map } from 'lucide-vue-next'
   width: 36px; height: 36px; border-radius: 50%;
   background: rgba(255,255,255,0.08);
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.82rem; font-weight: 700;
   color: rgba(255,255,255,0.6);
   transition: background 0.2s, color 0.2s;
 }
@@ -123,13 +129,52 @@ import { Facebook, Twitter, MessageCircle, MapPin, Map } from 'lucide-vue-next'
   text-transform: uppercase; letter-spacing: 0.1em;
   color: rgba(255,255,255,0.9); margin-bottom: 18px;
 }
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
 .footer-col a {
   font-size: 0.84rem; color: rgba(255,255,255,0.5);
   transition: color 0.2s;
 }
 .footer-col a:hover { color: var(--gold-light); }
 
+/* App-only block */
+.app-only-block {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 14px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.app-only-block:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: var(--terra);
+}
+.app-only-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--terra);
+  color: white;
+  font-size: 0.68rem; font-weight: 700;
+  padding: 3px 9px; border-radius: 20px;
+  width: fit-content;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.app-only-block ul {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.app-only-block ul li {
+  font-size: 0.82rem; color: rgba(255,255,255,0.35);
+  padding-left: 2px;
+}
+.app-only-cta {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--terra);
+  margin-top: 2px;
+  transition: gap 0.2s;
+}
+.app-only-block:hover .app-only-cta { gap: 8px; }
+
+/* Bottom */
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.07);
   max-width: 1280px; margin: 0 auto;

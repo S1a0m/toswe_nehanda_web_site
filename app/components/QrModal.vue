@@ -11,7 +11,7 @@
           <div class="modal-icon">
             <Smartphone :size="28" stroke-width="1.5" />
           </div>
-          <h3>Télécharger Tôswè Africa</h3>
+          <h3>Télécharger Nehanda</h3>
           <p>Scannez le QR code pour télécharger l'app, ou discutez directement avec Nehanda sur Messenger.</p>
 
           <div class="qr-wrap">
