@@ -219,7 +219,7 @@
     <!-- ── DOWNLOAD CTA ───────────────────────────────── -->
     <section class="mp-cta">
       <div class="mp-cta-inner">
-        <div class="mp-cta-icon"><Smartphone :size="44" /></div>
+        <div class="mp-cta-icon"><Smartphone :size="44" color="var(--terra-dark)" /></div>
         <h2>Commandez via l'application</h2>
         <p>
           Obtenez une meilleure expérience avec l'app Tôswè Africa.
