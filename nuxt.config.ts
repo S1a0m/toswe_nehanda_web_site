@@ -24,5 +24,10 @@ export default defineNuxtConfig({
     server: {
       allowedHosts: true
     }
+  },
+
+  routeRules: {
+    '/auth': { ssr: false },
+    '/auth/**': { ssr: false },
   }
 })

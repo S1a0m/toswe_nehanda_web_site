@@ -55,11 +55,11 @@
           </div>
 
           <div class="store-badges">
-            <a href="#" class="store-pill">
+            <a href="https://play.google.com/apps/internaltest/4701674707126514472" target="_blank" class="store-pill">
               <Smartphone :size="15" />
               Google Play
             </a>
-            <a href="#" class="store-pill">
+            <a href="https://www.facebook.com/nehanda.by.toswe.africa/" target="_blank" class="store-pill">
               <MessageCircle :size="15" />
               Messenger
             </a>

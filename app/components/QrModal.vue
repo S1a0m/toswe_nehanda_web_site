@@ -20,7 +20,7 @@
                 <div v-for="i in 49" :key="i" :class="['qr-cell', qrPattern.includes(i) ? 'on' : 'off']" />
               </div>
               <div class="qr-logo">
-                <span>Nɔ</span>
+                <span><img src="/images/logo-neh.png" alt="Nehanda Logo" /></span>
               </div>
             </div>
           </div>
@@ -45,8 +45,10 @@
 import { Smartphone, MessageCircle, X } from 'lucide-vue-next'
 const { qrModalOpen, closeQrModal } = useDownload()
 
-const PLAY_STORE = 'https://play.google.com/store/apps/details?id=africa.toswe.app'
-const APP_STORE  = 'https://apps.apple.com/app/toswe-africa/id000000000'
+const PLAY_STORE = 'https://play.google.com/apps/internaltest/4701674707126514472'
+// const APP_STORE  = 'https://apps.apple.com/app/toswe-africa/id000000000'
+
+const MESSENGER  = 'https://www.facebook.com/nehanda.by.toswe.africa/'
 
 // Pattern décoratif pour simuler un QR
 const qrPattern = [1,2,3,4,5,6,7,9,13,15,21,22,23,24,25,26,27,29,33,35,
@@ -55,7 +57,7 @@ const qrPattern = [1,2,3,4,5,6,7,9,13,15,21,22,23,24,25,26,27,29,33,35,
 
 <style scoped>
 .modal-overlay {
-  position: fixed; inset: 0; z-index: 999;
+  position: fixed; inset: 0; z-index: 9999;
   background: rgba(26, 15, 10, 0.6);
   backdrop-filter: blur(10px);
   display: flex; align-items: center; justify-content: center;

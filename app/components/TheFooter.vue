@@ -44,7 +44,7 @@
       <!-- Pour les vendeurs — app only -->
       <div class="footer-col">
         <h5>Pour les vendeurs</h5>
-        <div class="app-only-block" @click="showQrModal">
+        <div class="app-only-block" @click="download">
           <div class="app-only-badge">
             <Smartphone :size="12" stroke-width="2.5" />
             Sur l'app
@@ -62,7 +62,7 @@
       <!-- Légal & Support — app only -->
       <div class="footer-col">
         <h5>Légal & Support</h5>
-        <div class="app-only-block" @click="showQrModal">
+        <div class="app-only-block" @click="download">
           <div class="app-only-badge">
             <Smartphone :size="12" stroke-width="2.5" />
             Sur l'app
@@ -70,7 +70,7 @@
           <ul>
             <li>À propos</li>
             <li>CGU</li>
-            <li>Confidentialité</li>
+            <li><NuxtLink to="/privacy">Confidentialité</NuxtLink></li>
             <li>Contact</li>
           </ul>
           <span class="app-only-cta">Télécharger l'app <ArrowRight :size="12" /></span>
@@ -79,7 +79,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>© 2025 Tôswè Africa. Tous droits réservés.</p>
+      <p>© 2026 Tôswè Africa. Tous droits réservés.</p>
       <p class="made">
         <MapPin :size="14" style="color: rgba(255,255,255,0.4); margin-right: 4px;" />
         Bénin 🇧🇯
@@ -90,7 +90,7 @@
 
 <script setup>
 import { Facebook, Mail, MessageCircle, MapPin, Smartphone, ArrowRight } from 'lucide-vue-next'
-const { showQrModal } = useDownload()
+const { download } = useDownload()
 </script>
 
 <style scoped>
@@ -192,6 +192,7 @@ const { showQrModal } = useDownload()
   color: rgba(255,255,255,0.3);
   font-size: 0.75rem;
   letter-spacing: 0.06em;
+  display: flex; align-items: center; gap: 4px;
 }
 
 @media (max-width: 900px) {
